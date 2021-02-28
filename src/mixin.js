@@ -95,9 +95,8 @@ export default {
             var file = event.target.files[0];
             var url = URL.createObjectURL(file);
             _this.fileUpload = file;
-            //_this.$set(_this.tempUrl, fieldIndex, url);
+            //console.log(_this.fileUpload);
 
-            console.log(_this.fileUpload);
             //set image
             var reader = new FileReader();
             reader.onload = function (e) {
@@ -128,7 +127,7 @@ export default {
             };
             axios.post(obj.url, formReqData, _this.myConfig, config)
             .then(response => {
-                console.log(response)
+                //console.log(response);
                 if (response.status === 200) {
 
                     if (obj.modalId) $('#' + obj.modalId).modal('hide');

@@ -101,25 +101,25 @@
 
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label >Title</label>
+                                    <label >Title  <span class="text-primary">*</span></label>
                                     <input type="text" :maxlength="50" v-model="formData.title" maxlength="255" class="form-control" id="title" placeholder="Enter your text" required>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label >Price</label>
+                                    <label >Price  <span class="text-primary">*</span></label>
                                     <input type="text" v-model="formData.price" maxlength="255" class="form-control" id="price" placeholder="Enter your text" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label >Description</label>
+                                    <label >Description  <span class="text-primary">*</span></label>
                                     <textarea :maxlength="500" name="description" v-model="formData.description" class="form-control" cols="30" rows="2" placeholder="Enter your text" required></textarea>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label >Image</label>
                                     <div class="row">
                                         <div class="col-8">
-                                            <label>Upload file</label>
-                                            <input type="file" name="image" class="form-control-file" @change="onFileChange($event, 'image')">
+                                            <label>Upload file <span class="text-primary">*</span></label>
+                                            <input type="file" name="image" class="form-control-file" @change="onFileChange($event, 'image')"  >
                                         </div>
                                         <div class="col-md-4">
                                             <img :src="formData.image ? getImageFile(formData.image):'' " :alt="formData.image"

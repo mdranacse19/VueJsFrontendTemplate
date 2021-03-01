@@ -21,7 +21,6 @@ app.use(Toaster, {
 });
 
 
-
 app.use(router);
 app.mixin(mixins);
 app.mount("#app");

@@ -15,7 +15,7 @@
                     <form @submit.prevent="login({'url': this.backendUrl+'/api/auth/login'})" class="form-horizontal m-t-10" action="" method="post">
 
                         <div class="form-group">
-                            <label for="email">Username</label>
+                            <label for="email">Email</label>
                             <input name="email" v-model="formData.email" type="email" class="form-control" id="email" placeholder="Enter email" required>
                         </div>
                         <div class="form-group">

@@ -7,7 +7,7 @@ export default {
             dataList: [],
             backendUrl: process.env.VUE_APP_BACKEND_URL,
             frontendUrl: 'http://localhost:' + process.env.VUE_APP_FRONTEND_PORT + '/',
-            fileUpload: {},
+            fileUpload: '',
             tempUrl: {},
             load_status: 0,
 
@@ -22,6 +22,7 @@ export default {
         //console.log(process.env)
     },
     methods: {
+
         //for login into application
         login(obj, formData = this.formData) {
             axios.post(obj.url, formData)
@@ -95,9 +96,9 @@ export default {
             var file = event.target.files[0];
             var url = URL.createObjectURL(file);
             _this.fileUpload = file;
-            //_this.$set(_this.tempUrl, fieldIndex, url);
+            //_this.$set(_this.tempUrl, fieldIndex, url );
 
-            console.log(_this.fileUpload);
+            //console.log(_this.fileUpload);
             //set image
             var reader = new FileReader();
             reader.onload = function (e) {

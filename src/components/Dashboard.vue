@@ -56,7 +56,7 @@
                                               <td>{{ list.description.substring(0, 30)+' ...' }}</td>
                                               <td>{{ list.price }}</td>
                                               <td>
-                                                  <img :src="getImageFile(list.image)" alt="list.image" width="80" height="80">
+                                                  <img :src="getImageFile(list.image)" :alt="list.image" width="80" height="80">
                                               </td>
                                               <td>
                                                   <table>

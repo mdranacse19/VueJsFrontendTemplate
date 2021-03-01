@@ -26,15 +26,15 @@ export default {
         //for login into application
         login(obj, formData = this.formData) {
             axios.post(obj.url, formData)
-            .then(response => {
-                window.location = this.frontendUrl + 'dashboard';
-                this.formData = {};
-                localStorage.setItem("token", response.data.access_token); //set token using local storage
-            })
-            .catch(e => {
+                .then(response => {
+                    window.location = this.frontendUrl + 'dashboard';
+                    this.formData = {};
+                    localStorage.setItem("token", response.data.access_token); //set token using local storage
+                })
+                .catch(e => {
 
-                this.$toast.error('Error !! ' + e);
-            });
+                    this.$toast.error('Error !! ' + e);
+                });
         },
 
         //for logout from application
@@ -46,20 +46,20 @@ export default {
         //for get all data list
         getDataList(url, filter = this.filter) {
             var dataParams = filter;
-            axios.get(url, this.myConfig, { params: dataParams } )
-            .then(response => {
-                if (response.status === 200) {
+            axios.get(url, this.myConfig, { params: dataParams })
+                .then(response => {
+                    if (response.status === 200) {
 
-                    this.dataList = response.data;
-                    this.load_status = 1;
+                        this.dataList = response.data;
+                        this.load_status = 1;
 
-                } else {
-                    this.$toast.error(response.data.message);
-                }
-            })
-            .catch(e => {
-                console.log('Error !!' + e);
-            })
+                    } else {
+                        this.$toast.error(response.data.message);
+                    }
+                })
+                .catch(e => {
+                    console.log('Error !!' + e);
+                })
         },
 
         //for open modal
@@ -72,22 +72,22 @@ export default {
         //for store data without File
         storeWithoutFile(obj, formData = this.formData) {
             axios.post(obj.url, formData, this.myConfig)
-            .then(response => {
-                if (response.status === 200) {
+                .then(response => {
+                    if (response.status === 200) {
 
-                    if (obj.modalId) $('#' + obj.modalId).modal('hide');
-                    this.$toast.success(response.data.message);
-                    this.getDataList(this.setUrl, {});
-                    this.formData = {};
+                        if (obj.modalId) $('#' + obj.modalId).modal('hide');
+                        this.$toast.success(response.data.message);
+                        this.getDataList(this.setUrl, {});
+                        this.formData = {};
 
-                } else {
+                    } else {
 
-                    this.$toast.error(response.data.message);
-                }
-            })
-            .catch(e => {
-                console.log('Error !!' + e);
-            });
+                        this.$toast.error(response.data.message);
+                    }
+                })
+                .catch(e => {
+                    console.log('Error !!' + e);
+                });
         },
 
         //for select file
@@ -96,12 +96,11 @@ export default {
             var file = event.target.files[0];
             var url = URL.createObjectURL(file);
             _this.fileUpload = file;
-            //_this.$set(_this.tempUrl, fieldIndex, url );
-
             //console.log(_this.fileUpload);
+
             //set image
             var reader = new FileReader();
-            reader.onload = function (e) {
+            reader.onload = function(e) {
                 $('#image')
                     .attr('src', url)
                     .width(80)
@@ -118,9 +117,6 @@ export default {
             Object.keys(formData).forEach(key => {
                 formReqData.append(key, formData[key]);
             });
-            /*Object.keys(_this.fileUpload).forEach(key => {
-                formReqData.append(key, _this.fileUpload[key]);
-            });*/
 
             let config = {
                 header: {
@@ -128,41 +124,41 @@ export default {
                 }
             };
             axios.post(obj.url, formReqData, _this.myConfig, config)
-            .then(response => {
-                console.log(response)
-                if (response.status === 200) {
+                .then(response => {
+                    //console.log(response);
+                    if (response.status === 200) {
 
-                    if (obj.modalId) $('#' + obj.modalId).modal('hide');
-                    _this.$toast.success(response.data.message);
-                    _this.getDataList(this.setUrl, {});
-                    formReqData = {};
+                        if (obj.modalId) $('#' + obj.modalId).modal('hide');
+                        _this.$toast.success(response.data.message);
+                        _this.getDataList(this.setUrl, {});
+                        formReqData = {};
 
-                } else{
-                    _this.$toast.error(response.data.message);
-                }
-            })
-            .catch(e => {
-                console.log('Error !!' + e);
-            });
+                    } else {
+                        _this.$toast.error(response.data.message);
+                    }
+                })
+                .catch(e => {
+                    console.log('Error !!' + e);
+                });
         },
 
         //for open modal and get single data
         editFormData(obj) {
             axios.get(obj.url, this.myConfig)
-            .then(response => {
-                 if(response.status === 200) {
+                .then(response => {
+                    if (response.status === 200) {
 
-                    this.getDataList(this.setUrl, {});
-                    this.formData = response.data.formData;
-                    $('#' + obj.modalId).modal('show');
+                        this.getDataList(this.setUrl, {});
+                        this.formData = response.data.formData;
+                        $('#' + obj.modalId).modal('show');
 
-                }else{
-                    this.$toast.error(response.data.message);
-                }
-            })
-            .catch(e => {
-                console.log('Error !!' + e);
-            })
+                    } else {
+                        this.$toast.error(response.data.message);
+                    }
+                })
+                .catch(e => {
+                    console.log('Error !!' + e);
+                })
         },
 
         //for delete single data
@@ -176,21 +172,22 @@ export default {
             }).then((result) => {
                 if (result) {
                     axios.delete(obj.url, this.myConfig)
-                    .then(response => {
-                        swal(response.data.message);
-                        this.getDataList(this.setUrl, {});
-                    })
-                    .catch(e => {
-                        console.log('Error !!' + e);
-                    })
+                        .then(response => {
+                            swal(response.data.message);
+                            this.getDataList(this.setUrl, {});
+                        })
+                        .catch(e => {
+                            console.log('Error !!' + e);
+                        })
                 }
             }).catch(e => {
                 console.log('Error !!' + e);
             });
         },
 
-        getImageFile(url){
-            let imageUrl = process.env.VUE_APP_BACKEND_URL+'/store_documents/'+url;
+        //get image url from bd
+        getImageFile(url) {
+            let imageUrl = process.env.VUE_APP_BACKEND_URL + '/store_documents/' + url;
             return imageUrl;
             //console.log(imageUrl);
         }
